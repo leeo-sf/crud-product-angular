@@ -1,6 +1,7 @@
 import { NgIf } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Product } from '../../Product';
 
 @Component({
   selector: 'app-product-form',
@@ -16,6 +17,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 export class ProductFormComponent implements OnInit {
   productForm!: FormGroup;
   @Input() btnText!: string;
+  @Output() onSubmit = new EventEmitter<Product>() ;
 
   ngOnInit(): void {
     this.productForm = new FormGroup({
@@ -52,7 +54,7 @@ export class ProductFormComponent implements OnInit {
     if(this.productForm.invalid) {
       return
     }
-
-    console.log("Formulário enviado")
+    //Enviando os dados do formulário para o componente pai (pode ser método de create ou update)
+    this.onSubmit.emit(this.productForm.value);
   }
 }
