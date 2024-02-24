@@ -1,27 +1,42 @@
-<form>
+<form (ngSubmit)="submit()" [formGroup]="productForm" #formDir="ngForm">
     <div class="form-group">
         <label for="nome">Nome:</label>
-        <input type="text" placeholder="Digite o nome do produto" required >
+        <input type="text" placeholder="Digite o nome do produto" formControlName="nome" required >
+        <div *ngIf="nome.invalid && formDir.submitted" class="validation-error">
+            <p *ngIf="nome.errors?.['required']">O nome é obrigatório</p>
+        </div>
     </div>
 
     <div class="form-group">
         <label for="preco">Preço:</label>
-        <input type="number" placeholder="Digite o preço do produto" required >
+        <input type="number" placeholder="Digite o preço do produto" required formControlName="preco" >
+        <div *ngIf="preco.invalid && formDir.submitted" class="validation-error">
+            <p *ngIf="preco.errors?.['required']">O preço é obrigatório</p>
+        </div>
     </div>
 
     <div class="form-group">
         <label for="quantidade">Quantidade:</label>
-        <input type="number" placeholder="Digite a quantidade do produto" required >
+        <input type="number" placeholder="Digite a quantidade do produto" required formControlName="quantidade" >
+        <div *ngIf="quantidade.invalid && formDir.submitted" class="validation-error">
+            <p *ngIf="quantidade.errors?.['required']">A quantidade é obrigatória</p>
+        </div>
     </div>
 
     <div class="form-group">
         <label for="idFabricante">Id Fabricante:</label>
-        <input type="number" placeholder="Digite o id do fabricante" required >
+        <input type="number" placeholder="Digite o id do fabricante" required formControlName="idFabricante" >
+        <div *ngIf="idFabricante.invalid && formDir.submitted" class="validation-error">
+            <p *ngIf="idFabricante.errors?.['required']">O id do fabricante é obrigatório</p>
+        </div>
     </div>
 
     <div class="form-group">
         <label for="idCategoria">Id Categoria:</label>
-        <input type="number" placeholder="Digite a categoria do produto" required >
+        <input type="number" placeholder="Digite a categoria do produto" required formControlName="idCategoria" >
+        <div *ngIf="idCategoria.invalid && formDir.submitted" class="validation-error">
+            <p *ngIf="idCategoria.errors?.['required']">O id categoria é obrigatório</p>
+        </div>
     </div>
 
     <input type="submit" value="{{ btnText }}">
