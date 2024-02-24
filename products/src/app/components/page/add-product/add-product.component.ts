@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
+import { ProductFormComponent } from '../../product-form/product-form.component';
 
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [],
+  imports: [
+    ProductFormComponent
+  ],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css'
 })
 export class AddProductComponent {
-
+  btnText: string = "Cadastrar produto";
 }
