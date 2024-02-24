@@ -1,0 +1,43 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    border-bottom: 1px solid #777;
+}
+
+.bread,
+.links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bread img {
+    width: 40px;
+    margin-right: 0.6em;
+}
+
+.bread h2 {
+    transform-origin: .4s;
+}
+
+.bread:hover > h2 {
+    color: #dec129;
+}
+
+.links li {
+    margin-right: 1em;
+    list-style: none;
+}
+
+.links a {
+    padding: 0.1em 0.3em;
+}
+
+#add a {
+    color: #dec129;
+}
+
+#add a:hover {
+    background-color: #dec129;
+}
