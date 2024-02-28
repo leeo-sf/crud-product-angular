@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class ProductService {
   private baseApiUrl = environment.baseApiUrl;
   private apiUrlCreate = `${this.baseApiUrl}CadastrarProduto`;
+  private apiUrlGetProducts = `${this.baseApiUrl}ListarTodosProdutos`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,5 +23,9 @@ export class ProductService {
   serviceCreateProduct(product: Product): Observable<Product> {
     const productDate = JSON.stringify(product);
     return this.httpClient.post<Product>(this.apiUrlCreate, productDate, this.httpOptions);
+  }
+
+  serviceGetAllProducts(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(this.apiUrlGetProducts);
   }
 }
