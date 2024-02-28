@@ -11,6 +11,7 @@ export class ProductService {
   private baseApiUrl = environment.baseApiUrl;
   private apiUrlCreate = `${this.baseApiUrl}CadastrarProduto`;
   private apiUrlGetProducts = `${this.baseApiUrl}ListarTodosProdutos`;
+  private apiUrlDeleteProduct = `${this.baseApiUrl}DeletarProduto`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -27,5 +28,10 @@ export class ProductService {
 
   serviceGetAllProducts(): Observable<Product[]> {
     return this.httpClient.get<Product[]>(this.apiUrlGetProducts);
+  }
+
+  serviceDeleteProduct(id: number) {
+    const headerDelete = this.httpOptions.headers.set('id_deletar', id.toString());
+    return this.httpClient.delete<Product>(this.apiUrlDeleteProduct, { headers:  headerDelete });
   }
 }

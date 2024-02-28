@@ -2,7 +2,7 @@ import { NgFor, NgIf, NgStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../Product';
 import { ProductService } from '../../../service/product.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +20,10 @@ import { RouterLink } from '@angular/router';
 export class HomeComponent implements OnInit {
   listOfProducts!: Product[];
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router
+    ) {}
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -30,5 +33,16 @@ export class HomeComponent implements OnInit {
     this.productService.serviceGetAllProducts().subscribe((products: Product[]) => {
       this.listOfProducts = products;
     });
+  }
+
+  deleteProduct(product: Product) {
+    if (confirm("Deseja deletar o produto ? Esta ação não poderá ser desfeita.")) {
+      this.confirmDeleteProduct(product.id);
+    }
+  }
+
+  private async confirmDeleteProduct(id: number) {
+    await this.productService.serviceDeleteProduct(id).subscribe();
+    window.location.reload();
   }
 }
