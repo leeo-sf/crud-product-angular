@@ -34,7 +34,7 @@ export class ProductService {
 
   serviceDeleteProduct(id: number) {
     const headerDelete = this.httpOptions.headers.set('id_deletar', id.toString());
-    return this.httpClient.delete<Product>(this.apiUrlDeleteProduct, { headers:  headerDelete });
+    return this.httpClient.delete(this.apiUrlDeleteProduct, { headers:  headerDelete });
   }
 
   serviceGetProductById(id: number): Observable<Product> {

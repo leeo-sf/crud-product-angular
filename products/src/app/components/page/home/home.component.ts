@@ -35,14 +35,15 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  deleteProduct(product: Product) {
+  deleteProduct(id: number) {
     if (confirm("Deseja deletar o produto ? Esta ação não poderá ser desfeita.")) {
-      this.confirmDeleteProduct(product.id);
+      this.confirmDeleteProduct(id);
     }
   }
 
   private confirmDeleteProduct(id: number) {
     this.productService.serviceDeleteProduct(id).subscribe();
-    window.location.reload();
+
+    this.router.navigate(['/']);
   }
 }

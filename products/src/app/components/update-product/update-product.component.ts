@@ -37,7 +37,7 @@ export class UpdateProductComponent implements OnInit {
   }
 
   async updateProduct(product: Product) {
-    const id = this.product.id;
+    const id = this.product.id!;
 
     await this.productService.serviceUpdateProduct(id, product).subscribe();
 

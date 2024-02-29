@@ -25,7 +25,7 @@
                 <td>{{produto.quantidade}}</td>
                 <td>
                     <a class="btn btn-warning btn-sm" routerLink="/product/update/{{ produto.id }}">Edit</a>
-                    <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteProduct(produto)">Delete</button>
+                    <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteProduct(produto.id!)">Delete</button>
                 </td>
             </tr>
         </tbody>
