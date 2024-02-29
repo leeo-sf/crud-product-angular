@@ -39,10 +39,18 @@ export class UpdateProductComponent implements OnInit {
   async updateProduct(product: Product) {
     const id = this.product.id!;
 
-    await this.productService.serviceUpdateProduct(id, product).subscribe();
+    await this.productService.serviceUpdateProduct(id, product).subscribe(() => {},
+    (error) => {
+      if (error.status === 400) {
+        alert('Não foi possível atualizar! ' + error.error)
+      }
 
-    this.messageService.add(`Produto ${product.nome} foi atualizado com sucesso.`);
-
-    this.router.navigate(['/']);
+      //Valiidando o status de sucesso (200) pq mesmo dando o status 200 a API está retornando erro
+      if (error.status == 200) {
+        this.messageService.add("Produto alterado com sucesso!");
+        this.router.navigate(['/']);
+      }
+    }
+    );
   }
 }
