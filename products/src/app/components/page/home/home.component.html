@@ -24,7 +24,7 @@
                 <td>R${{produto.preco.toFixed(2)}}</td>
                 <td>{{produto.quantidade}}</td>
                 <td>
-                    <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                    <a class="btn btn-warning btn-sm" routerLink="/product/update/{{ produto.id }}">Edit</a>
                     <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteProduct(produto)">Delete</button>
                 </td>
             </tr>

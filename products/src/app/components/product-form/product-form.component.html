@@ -1,4 +1,6 @@
 <form (ngSubmit)="submit()" [formGroup]="productForm" #formDir="ngForm">
+    <input type="hidden" formControlName="id">
+
     <div class="form-group">
         <label for="nome">Nome:</label>
         <input type="text" placeholder="Digite o nome do produto" formControlName="nome" required >

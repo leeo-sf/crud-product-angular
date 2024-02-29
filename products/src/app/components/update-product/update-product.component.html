@@ -1,0 +1,9 @@
+<div *ngIf="product">
+    <h2>Atualizar o <span>Produto</span></h2>
+    <app-product-form
+    [btnText]="btnTitle"
+    [productData]="product"
+    (onSubmit)="updateProduct($event)"
+    >
+    </app-product-form>
+</div>

@@ -17,17 +17,30 @@ import { Product } from '../../Product';
 export class ProductFormComponent implements OnInit {
   productForm!: FormGroup;
   @Input() btnText!: string;
-  @Output() onSubmit = new EventEmitter<Product>() ;
+  @Input() productData!: Product;
+  @Output() onSubmit = new EventEmitter<Product>();
 
   ngOnInit(): void {
-    this.productForm = new FormGroup({
-      id: new FormControl(''),
-      nome: new FormControl('', Validators.required),
-      preco: new FormControl('', Validators.required),
-      quantidade: new FormControl('', Validators.required),
-      idFabricante: new FormControl('', Validators.required),
-      idCategoria: new FormControl('', Validators.required),
-    });
+    //Se tiver dados monte o formulário com os dados
+    if (this.productData) {
+      this.productForm = new FormGroup({
+        id: new FormControl(this.productData?.id),
+        nome: new FormControl(this.productData.nome),
+        preco: new FormControl(this.productData.preco),
+        quantidade: new FormControl(this.productData.quantidade),
+        idFabricante: new FormControl(this.productData.idFabricante),
+        idCategoria: new FormControl(this.productData.idCategoria)
+      })
+    } else {
+      this.productForm = new FormGroup({
+        id: new FormControl(''),
+        nome: new FormControl('', Validators.required),
+        preco: new FormControl('', Validators.required),
+        quantidade: new FormControl('', Validators.required),
+        idFabricante: new FormControl('', Validators.required),
+        idCategoria: new FormControl('', Validators.required),
+      });
+    }
   }
 
   get nome() {

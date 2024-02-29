@@ -41,8 +41,8 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  private async confirmDeleteProduct(id: number) {
-    await this.productService.serviceDeleteProduct(id).subscribe();
+  private confirmDeleteProduct(id: number) {
+    this.productService.serviceDeleteProduct(id).subscribe();
     window.location.reload();
   }
 }

@@ -12,6 +12,8 @@ export class ProductService {
   private apiUrlCreate = `${this.baseApiUrl}CadastrarProduto`;
   private apiUrlGetProducts = `${this.baseApiUrl}ListarTodosProdutos`;
   private apiUrlDeleteProduct = `${this.baseApiUrl}DeletarProduto`;
+  private apiUrlGetProductById = `${this.baseApiUrl}BuscarPorId`;
+  private apiUrlUpdateProduct = `${this.baseApiUrl}EdtarProduto`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -33,5 +35,15 @@ export class ProductService {
   serviceDeleteProduct(id: number) {
     const headerDelete = this.httpOptions.headers.set('id_deletar', id.toString());
     return this.httpClient.delete<Product>(this.apiUrlDeleteProduct, { headers:  headerDelete });
+  }
+
+  serviceGetProductById(id: number): Observable<Product> {
+    const headerGetProductById = this.httpOptions.headers.set('id', id.toString());
+    return this.httpClient.get<Product>(this.apiUrlGetProductById, { headers:  headerGetProductById });
+  }
+
+  serviceUpdateProduct(id: number, product: Product): Observable<Product> {
+    const headerUpdateProduct = this.httpOptions.headers.set('id', id.toString());
+    return this.httpClient.put<Product>(this.apiUrlUpdateProduct, product, { headers: headerUpdateProduct })
   }
 }
